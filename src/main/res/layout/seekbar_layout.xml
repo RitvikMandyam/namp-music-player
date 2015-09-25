@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="75dp"
+	android:elevation="8dp"
+	android:orientation="vertical"
+	android:layout_alignParentBottom="true"
+	android:background="@color/md_white">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<SeekBar
+			android:id="@+id/seekbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="0dp"/>
+		<TextView
+			android:id="@+id/seekbar_currentTime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" 
+			android:layout_below="@id/seekbar"/>
+		
+		<TextView
+			android:id="@+id/seekbar_currentTime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" 
+			android:layout_below="@id/seekbar"/>
+		
+		<TextView
+			android:id="@+id/seekbar_endTime"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true" 
+			android:layout_below="@id/seekbar"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center_horizontal"
+			android:layout_below="@id/seekbar" 
+			android:layout_marginTop="-6dp" >
+			<ImageButton
+				android:layout_width="45dp"
+				android:layout_height="45dp"
+				android:id="@+id/seekbar_previous"
+				android:background="@drawable/rewind"
+				android:onClick="onClickHandler"/>
+
+			<ImageButton
+				android:layout_width="45dp"
+				android:layout_height="45dp"
+				android:id="@+id/seekbar_pause"
+				android:background="@drawable/play"
+				android:onClick="onClickHandler"/>
+
+			<ImageButton
+				android:layout_width="45dp"
+				android:layout_height="45dp"
+				android:id="@+id/seekbar_next"
+				android:background="@drawable/forward"
+				android:onClick="onClickHandler"/>
+		</LinearLayout>
+		
+		<ImageButton
+			android:id="@+id/seekbar_shuffle"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:background="@drawable/shuffle" 
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentRight="true"
+			android:onClick="onClickHandler"/>
+		
+		<ImageButton
+			android:id="@+id/seekbar_repeat"
+			android:layout_width="24dp"
+			android:layout_height="24dp" 
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"/>
+			
+	</RelativeLayout>
+
+</Toolbar>
+
