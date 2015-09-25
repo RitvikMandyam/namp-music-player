@@ -85,6 +85,5 @@
 			android:layout_alignParentLeft="true"/>
 			
 	</RelativeLayout>
-
 </Toolbar>
 
