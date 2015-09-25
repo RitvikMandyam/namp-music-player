@@ -108,7 +108,7 @@ public class SongViewActivity extends Activity
 				break;
 				
 			case R.id.seekbar_shuffle: 
-				MainActivity.shuffle(false);
+				MainActivity.getQueue().shuffle();
 				break;
 		}
 	}

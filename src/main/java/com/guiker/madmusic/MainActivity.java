@@ -17,7 +17,7 @@ public class MainActivity extends Activity
 	private Intent playIntent;
 	private boolean musicBound = false;
 	static View root;
-	static List<Song> songList;
+	static MusicQueue queue;
 //	@Bind (R.id.list) ListView list;
 
     @Override
@@ -28,6 +28,8 @@ public class MainActivity extends Activity
         setContentView(R.layout.main);
 //		ButterKnife.bind(this);
 		root = getWindow().getDecorView();
+
+		queue = new MusicQueue(getMusic());
 
 		if (playIntent == null)
 		{
@@ -45,13 +47,11 @@ public class MainActivity extends Activity
 				}
 			});
 
-		songList = getMusic();
-
 		ListView list = (ListView) findViewById(R.id.list);
 
 		View shuffle = LayoutInflater.from(this).inflate(R.layout.shuffle_list_item, list, false);
 
-		ListAdapter adapter = new MusicAdapter(songList, this);
+		ListAdapter adapter = new MusicAdapter(getMusic(), this);
 		list.setAdapter(adapter);
 		list.addHeaderView(shuffle);
     }
@@ -130,9 +130,9 @@ public class MainActivity extends Activity
 		TextView album = (TextView) root.findViewById(R.id.readout_album);
 		ImageView artwork = (ImageView) root.findViewById(R.id.current_artwork);
 
-		title.setText(songList.get(pos).getTitle());
-		artist.setText(songList.get(pos).getArtist());
-		artwork.setImageBitmap(songList.get(pos).getArtwork());
+		title.setText(queue.getSongs().get(pos).getTitle());
+		artist.setText(queue.getSongs().get(pos).getArtist());
+		artwork.setImageBitmap(queue.getSongs().get(pos).getArtwork());
 
 		ImageButton v = (ImageButton) root.findViewById(R.id.play);
 		v.setBackgroundResource(R.drawable.pause);
@@ -159,7 +159,11 @@ public class MainActivity extends Activity
 				break;
 
 			case R.id.shuffle_button: 
-				shuffle(true);
+				queue.shuffle();
+				musicSrv.setList(queue.getSongs());
+				Random r = new Random();
+				int i1 = r.nextInt(queue.getSongs().size());
+				songPicked(i1);
 				break;
 		}
 	}
@@ -169,15 +173,8 @@ public class MainActivity extends Activity
 		return musicSrv;
 	}
 
-	public static void shuffle(boolean playNext)
+	public static MusicQueue getQueue()
 	{
-		Collections.shuffle(songList);
-		Random r = new Random();
-		int i1 = r.nextInt(songList.size());
-		musicSrv.setList(songList);
-		if (playNext)
-		{
-			songPicked(i1);
-		}
+		return queue;
 	}
 }
