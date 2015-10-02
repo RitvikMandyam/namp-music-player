@@ -1,2 +1,2 @@
-# yamp-music-player
-It's a music player. What did you expect, cookies? Seriously.
+# namp-music-player
+It's not another music player, it just happens to play music!
